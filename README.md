@@ -6,14 +6,8 @@ This is a very simple one-page application consisting of a single table and a fo
 ### Installation
 1. Create a private GitHub repository and invite @jurajmasar and @gyfis as collaborators
 2. Create a new MySQL database
-```sql
-CREATE DATABASE test_project_main;
-```
 3. Rename `config/database` to `config/database.php` and configure your database connection settings in this file
 4. Import `database/schema.sql` into your database
-```bash
-mysql test_project_main -u root < database/schema.sql
-```
 
 ### Tasks to perform
 1. Style the page using [Bootstrap](http://getbootstrap.com/) or [Tailwind](http://tailwind.com/)
@@ -27,3 +21,21 @@ mysql test_project_main -u root < database/schema.sql
 6. Please deploy the project to any freehosting and send us the production link.
 
 Thank you! 🙏
+
+# Notes
+
+## Installation
+
+```sql
+CREATE DATABASE test_project_main;
+```
+
+```bash
+mysql test_project_main -u root < database/schema.sql
+```
+
+## Run the app
+
+```
+foreman start -f Procfile.dev
+```
