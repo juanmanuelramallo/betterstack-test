@@ -1,15 +1,45 @@
 <?php
 
+session_start();
+
 $app = require "./core/app.php";
 
 // Create new instance of user
 $user = new User($app->db);
-// Insert it to database with POST data
-$user->insert(array(
-	'name' => $_POST['name'],
-	'email' => $_POST['email'],
-	'city' => $_POST['city']
-));
+$fields = [
+  'name' => $_POST['name'],
+  'email' => $_POST['email'],
+  'city' => $_POST['city']
+];
+$errors = [];
 
-// Redirect back to index
+if ($fields['name'] == null || trim($fields['name']) == '') {
+  $errors['name'] = "can't be blank";
+}
+
+if ($fields['email'] == null || trim($fields['email']) == '') {
+  $errors['email'] = "can't be blank";
+} elseif (!filter_var($fields['email'], FILTER_VALIDATE_EMAIL)) {
+  $errors['email'] = "is not a valid email";
+}
+
+if ($fields['city'] == null || trim($fields['city']) == '') {
+  $errors['city'] = "can't be blank";
+}
+
+// If there are errors, store them in the session
+// Otherwise, insert the new user
+if (count($errors) > 0) {
+  $_SESSION['errors'] = $errors;
+  $_SESSION['fields'] = $fields;
+} else {
+  $_SESSION['errors'] = [];
+  $_SESSION['fields'] = [];
+  $user->insert(array(
+    'name' => $fields['name'],
+    'email' => $fields['email'],
+    'city' => $fields['city']
+  ));
+}
+
 header('Location: index.php');

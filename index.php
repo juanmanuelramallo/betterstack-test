@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Init app instance
 $app = require "./core/app.php";
 
@@ -8,5 +10,7 @@ $users = User::find($app->db,'*');
 
 // Render view 'views/index.php' and pass users variable there
 $app->renderView('index', array(
-	'users' => $users
+  'errors' => $_SESSION['errors'] ?? [],
+  'fields' => $_SESSION['fields'] ?? [],
+  'users' => $users,
 ));
