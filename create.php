@@ -9,7 +9,8 @@ $user = new User($app->db);
 $fields = [
   'name' => $_POST['name'],
   'email' => $_POST['email'],
-  'city' => $_POST['city']
+  'city' => $_POST['city'],
+  'phone' => $_POST['phone']
 ];
 $errors = [];
 
@@ -38,7 +39,8 @@ if (count($errors) > 0) {
   $user->insert(array(
     'name' => $fields['name'],
     'email' => $fields['email'],
-    'city' => $fields['city']
+    'city' => $fields['city'],
+    'phone' => $fields['phone']
   ));
 }
 
