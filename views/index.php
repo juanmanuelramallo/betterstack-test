@@ -27,9 +27,9 @@
         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Phone</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-gray-200">
+    <tbody class="divide-y divide-gray-100">
       <?php foreach($users as $user){?>
-      <tr class="even:bg-gray-50">
+      <tr class="odd:bg-gray-50">
         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900"><?=$user->getName()?></td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?=$user->getEmail()?></td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" data-search="city" data-search-value="<?=$user->getCity()?>"><?=$user->getCity()?></td>
