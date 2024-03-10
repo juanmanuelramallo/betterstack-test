@@ -24,6 +24,12 @@ Thank you! 🙏
 
 # Notes
 
+## How to test?
+
+Go to [https://betterstack-test.dokku.1ma.dev/](https://betterstack-test.dokku.1ma.dev/).
+
+To test the AJAX submission [append the `ajax=true` query string](https://betterstack-test.dokku.1ma.dev/?ajax=true).
+
 ## Installation
 
 ```sql
@@ -45,3 +51,32 @@ foreman start -f Procfile.dev
 ```
 mysql test_project_main -u root < database/migrations/20240309_add_phone_to_users.sql
 ```
+
+## Deployment
+
+With Dokku installed in a VM, in the VM run:
+
+```
+dokku apps:create betterstack-test
+dokku mysql:create betterstack-test
+dokku mysql:link betterstack-test betterstack-test
+```
+
+Check the DATABASE_URL env var and set the required env vars:
+```
+dokku config:show betterstack-test
+dokku config:set betterstack-test --no-restart DB_ADDRESS= DB_USERNAME= DB_PASSWORD= DB_DATABASE=
+```
+
+Locally:
+```
+git remote add dokku dokku@dokku.1ma.dev:betterstack-test
+git push dokku master
+```
+
+In the VM:
+```
+dokku letsencrypt:enable betterstack-test
+```
+
+Fin.
