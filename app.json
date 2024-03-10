@@ -1,7 +1,4 @@
 {
-  "buildpacks": {
-    "url": "https://github.com/heroku/heroku-buildpack-php"
-  },
   "scripts": {
     "dokku": {
       "predeploy": "npx tailwindcss -i ./css/application.tailwind.css -o ./css/application.css"
