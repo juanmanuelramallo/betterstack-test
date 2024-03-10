@@ -39,3 +39,9 @@ mysql test_project_main -u root < database/schema.sql
 ```
 foreman start -f Procfile.dev
 ```
+
+## Run migrations
+
+```
+mysql test_project_main -u root < database/migrations/20240309_add_phone_to_users.sql
+```
