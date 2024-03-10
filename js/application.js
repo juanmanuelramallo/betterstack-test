@@ -14,3 +14,33 @@ function handleSearch(query) {
     })
   }
 }
+
+/* Submits the form to create a new user */
+function handleCreate(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch('/create.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(data),
+  }).then(response => {
+    if (response.ok) {
+      // Add the new user to the table element.
+      //
+      // But for the sake of simplicity, we'll just reload the page>
+      window.location.reload();
+    }
+  })}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('create_user');
+
+  if (form.dataset.ajax === 'true') {
+    form.addEventListener('submit', handleCreate);
+  }
+})

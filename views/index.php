@@ -1,8 +1,8 @@
 <header class="bg-white">
-  <h1 class="font-semibold py-4">PHP Test Application</h1>
+<h1 class="font-semibold py-4">PHP Test Application <?=$ajax ? 'with ajax' : ''?></h1>
 </header>
 
-<main class="flex flex-col gap-8">
+<main class="flex flex-col gap-8 pb-10">
   <div class="flex flex-col gap-1">
     <div class="relative">
       <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-2 text-gray-600">
@@ -37,7 +37,13 @@
     </tbody>
   </table>
 
-  <form method="post" action="create.php">
+  <form method="post"
+    id="create_user"
+    action="create.php"
+    <?php if($ajax){?>
+      data-ajax="true"
+    <?php }?>
+  >
     <div class="flex flex-row gap-2">
       <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-2">
         <div class="flex flex-col gap-1">
