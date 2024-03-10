@@ -4,3 +4,4 @@ node_modules
 tmp
 /css/application.css
 vendor
+.env
